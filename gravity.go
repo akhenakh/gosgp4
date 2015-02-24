@@ -13,19 +13,19 @@ const (
 	WGS84
 )
 
-type GravityConst struct {
+type gravityConst struct {
 	tumin, mu, radiusearthkm, xke, j2, j3, j4, j3oj2 float64
 }
 
-// NewGravConst is returning all the gravity constants based on gravity type
-func NewGravConst(g GravityModel) *GravityConst {
+// newGravConst is returning all the gravity constants based on gravity type
+func newGravConst(g GravityModel) *gravityConst {
 	switch g {
 	case WGS72old:
 		xke := 0.0743669161
 		j2 := 0.001082616
 		j3 := -0.00000253881
 
-		return &GravityConst{
+		return &gravityConst{
 			mu:            398600.79964,
 			radiusearthkm: 6378.135,
 			xke:           xke,
@@ -42,7 +42,7 @@ func NewGravConst(g GravityModel) *GravityConst {
 		xke := 60.0 / math.Sqrt(radiusearthkm*radiusearthkm*radiusearthkm/mu)
 		j2 := 0.001082616
 		j3 := -0.00000253881
-		return &GravityConst{
+		return &gravityConst{
 			mu:            mu,
 			radiusearthkm: radiusearthkm,
 			xke:           xke,
@@ -59,7 +59,7 @@ func NewGravConst(g GravityModel) *GravityConst {
 		xke := 60.0 / math.Sqrt(radiusearthkm*radiusearthkm*radiusearthkm/mu)
 		j2 := 0.00108262998905
 		j3 := -0.00000253215306
-		return &GravityConst{
+		return &gravityConst{
 			mu:            398600.5,
 			radiusearthkm: radiusearthkm,
 			xke:           60.0 / math.Sqrt(radiusearthkm*radiusearthkm*radiusearthkm/mu),
